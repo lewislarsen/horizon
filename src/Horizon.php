@@ -118,23 +118,13 @@ class Horizon
      */
     public static function css()
     {
-        if (($light = @file_get_contents(__DIR__.'/../dist/styles.css')) === false) {
-            throw new RuntimeException('Unable to load the Horizon dashboard light CSS.');
-        }
-
-        if (($dark = @file_get_contents(__DIR__.'/../dist/styles-dark.css')) === false) {
-            throw new RuntimeException('Unable to load the Horizon dashboard dark CSS.');
-        }
-
-        if (($app = @file_get_contents(__DIR__.'/../dist/app.css')) === false) {
-            throw new RuntimeException('Unable to load the Horizon dashboard CSS.');
+        if (($tailwind = @file_get_contents(__DIR__.'/../dist/tailwind.css')) === false) {
+            throw new RuntimeException('Unable to load the Horizon dashboard Tailwind CSS.');
         }
 
         return new HtmlString(<<<HTML
-            <style data-scheme="light">{$light}</style>
-            <style data-scheme="dark">{$dark}</style>
-            <style>{$app}</style>
-            HTML);
+        <style>{$tailwind}</style>
+        HTML);
     }
 
     /**
