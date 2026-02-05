@@ -111,7 +111,7 @@ export default {
         <button
             type="button"
             @click="openNewTagModal"
-            class="flex relative group/button justify-center items-center rounded-md border px-4 py-2 text-sm font-medium text-nowrap h-8 pl-2.5 pr-4 bg-default border-base text-strong shadow-xs hover:bg-weak dark:hover:bg-hovered focus:outline-none shrink-0"
+            class="cursor-pointer flex relative group/button justify-center items-center rounded-md border px-4 py-2 text-sm font-medium text-nowrap h-8 pl-2.5 pr-4 bg-default border-base text-strong shadow-xs hover:bg-weak dark:hover:bg-hovered focus:outline-none shrink-0"
         >
           <span class="size-5 shrink-0 mr-1.5 text-icon-alpha group-hover/button:text-icon-strong">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -159,10 +159,10 @@ export default {
               <button
                   type="button"
                   @click="stopMonitoring(tag.tag)"
-                  class="flex relative group/button items-center rounded-md border py-2 text-sm font-medium h-8 hover:text-strong text-default border-transparent focus:outline-none w-8 justify-center px-0"
+                  class="cursor-pointer flex relative group/button items-center rounded-md border py-2 text-sm font-medium h-8 hover:text-strong text-default border-transparent focus:outline-none w-8 justify-center px-0"
                   title="Stop Monitoring"
               >
-                <span class="size-5 shrink-0 text-icon-alpha group-hover/button:text-icon-strong">
+                <span class="cursor-pointer size-5 shrink-0 text-icon-alpha group-hover/button:text-icon-strong">
                     <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
                     </svg>
@@ -175,51 +175,69 @@ export default {
     </div>
 
     <Teleport to="body">
-      <div v-if="showAddTagModal" class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center p-4">
-        <div @click="cancelNewTag" class="absolute inset-0 bg-modal backdrop-blur-[1px]"></div>
+      <Transition
+          enter-active-class="transition-opacity duration-200 ease-out"
+          enter-from-class="opacity-0"
+          enter-to-class="opacity-100"
+          leave-active-class="transition-opacity duration-150 ease-in"
+          leave-from-class="opacity-100"
+          leave-to-class="opacity-0"
+      >
+        <div v-if="showAddTagModal" class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center p-4">
+          <div @click="cancelNewTag" class="absolute inset-0 bg-modal backdrop-blur-[1px]"></div>
 
-        <div class="relative z-50 w-full max-w-xl bg-default/60 p-2 shadow-xs rounded-3xl backdrop-blur-[1px]">
-          <div class="bg-default relative overflow-hidden rounded-2xl border-weaker flex flex-col shadow-dialog">
-            <div class="p-5 border-b border-transparent">
-              <h2 class="font-medium text-strong text-base/5">Monitor New Tag</h2>
-              <p class="mt-2 text-default text-sm font-normal">
-                Enter the tag you want to monitor.
-              </p>
-            </div>
+          <Transition
+              enter-active-class="transition-all duration-200 ease-out"
+              enter-from-class="opacity-0 scale-95"
+              enter-to-class="opacity-100 scale-100"
+              leave-active-class="transition-all duration-150 ease-in"
+              leave-from-class="opacity-100 scale-100"
+              leave-to-class="opacity-0 scale-95"
+          >
+            <div v-if="showAddTagModal" class="relative z-50 w-full max-w-xl bg-default/60 p-2 shadow-xs rounded-3xl backdrop-blur-[1px]">
+              <div class="bg-default relative overflow-hidden rounded-2xl border-weaker flex flex-col shadow-dialog">
+                <div class="p-5 border-b border-transparent">
+                  <h2 class="font-medium text-strong text-base/5">Monitor New Tag</h2>
+                  <p class="mt-2 text-default text-sm font-normal">
+                    Enter the tag you want to monitor.
+                  </p>
+                </div>
 
-            <div class="px-5 pt-3 pb-5">
-              <label for="newTagInput" class="text-default text-sm font-medium leading-6">Tag</label>
-              <div class="mt-1.5 relative flex items-stretch border hover:border-hovered border-base rounded-md focus-within:ring-3 focus-within:ring-brand-weak">
-                <input
-                    v-model="newTag"
-                    @keyup.enter="monitorNewTag"
-                    class="block w-full bg-transparent px-3 outline-none h-10 text-sm text-strong placeholder:text-weak"
-                    id="newTagInput"
-                    type="text"
-                    placeholder="App\Models\User:6352"
-                >
+                <div class="px-5 pt-3 pb-5">
+                  <label for="newTagInput" class="text-default text-sm font-medium leading-6">Tag</label>
+                  <div class="mt-1.5 relative flex items-stretch border hover:border-hovered border-base rounded-md focus-within:ring-3 focus-within:ring-brand-weak">
+                    <input
+                        v-model="newTag"
+                        @keyup.enter="monitorNewTag"
+                        class="block w-full bg-transparent px-3 outline-none h-10 text-sm text-strong placeholder:text-weak"
+                        id="newTagInput"
+                        type="text"
+                        placeholder="App\Models\User:6352"
+                    >
+                  </div>
+                </div>
+
+                <div class="flex flex-col-reverse items-center justify-end gap-3 sm:flex-row p-5">
+                  <button
+                      type="button"
+                      @click="cancelNewTag"
+                      class="cursor-pointer rounded-md border py-2 px-4 text-sm font-medium bg-default border-base text-strong hover:bg-weak w-full sm:w-auto"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                      type="button"
+                      @click="monitorNewTag"
+                      class="cursor-pointer rounded-md border py-2 px-4 text-sm font-medium bg-stronger border-stronger text-inverted hover:bg-stronger-btn-hover w-full sm:w-auto"
+                  >
+                    Monitor
+                  </button>
+                </div>
               </div>
             </div>
-
-            <div class="flex flex-col-reverse items-center justify-end gap-3 sm:flex-row p-5">
-              <button
-                  type="button"
-                  @click="cancelNewTag"
-                  class="rounded-md border py-2 px-4 text-sm font-medium bg-default border-base text-strong hover:bg-weak w-full sm:w-auto"
-              >
-                Cancel
-              </button>
-              <button
-                  type="button"
-                  @click="monitorNewTag"
-                  class="rounded-md border py-2 px-4 text-sm font-medium bg-stronger border-stronger text-inverted hover:bg-stronger-btn-hover w-full sm:w-auto"
-              >
-                Monitor
-              </button>
-            </div>
-          </div>
+          </Transition>
         </div>
-      </div>
+      </Transition>
     </Teleport>
   </div>
 </template>

@@ -190,7 +190,7 @@ export default {
         <button
             @click="previous"
             :disabled="page === 1"
-            class="rounded-md border py-2 px-4 text-sm font-medium bg-default border-base text-strong shadow-xs hover:bg-weak disabled:opacity-50"
+            class="cursor-pointer rounded-md border py-2 px-4 text-sm font-medium bg-default border-base text-strong shadow-xs hover:bg-weak disabled:opacity-50"
         >
           Previous
         </button>
@@ -200,7 +200,7 @@ export default {
         <button
             @click="next"
             :disabled="page >= totalPages"
-            class="rounded-md border py-2 px-4 text-sm font-medium bg-default border-base text-strong shadow-xs hover:bg-weak disabled:opacity-50"
+            class="cursor-pointer rounded-md border py-2 px-4 text-sm font-medium bg-default border-base text-strong shadow-xs hover:bg-weak disabled:opacity-50"
         >
           Next
         </button>

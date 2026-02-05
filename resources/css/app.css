@@ -93,7 +93,7 @@
 :root {
     --bg-bg-app-background:#fff;
     --bg-bg-brand:#18b69b;
-    --bg-bg-brand-weak:#f1fbf9;
+    --bg-bg-brand-weak: rgba(108, 5, 205, 0.02);
     --bg-bg-brand-weaker:#fafefd;
     --bg-bg-card-hover:#f8faf8;
     --bg-bg-danger:#e54666;
@@ -190,9 +190,9 @@
     --text-text-dropdown-action:#fff;
     --text-text-info:#0894b3;
     --text-text-inverted:#fff;
-    --text-text-link:#13927c;
-    --text-text-link-hovered:#0e6d5d;
-    --text-text-link-pressed:#0e6d5d;
+    --text-text-link: #8b5cf6;
+    --text-text-link-hovered: #986cfa;
+    --text-text-link-pressed:#986cfa;
     --text-text-maintenance:#3722ff;
     --text-text-pending:#0081f1;
     --text-text-strong:#141e12;
@@ -207,7 +207,7 @@
 .dark {
     --bg-bg-app-background:#0a0b0a;
     --bg-bg-brand:#18b69b;
-    --bg-bg-brand-weak:#05cd9b05;
+    --bg-bg-brand-weak: rgba(108, 5, 205, 0.02);
     --bg-bg-brand-weaker:#05cd9b05;
     --bg-bg-card-hover:#191a19;
     --bg-bg-danger:#e54666;
@@ -304,9 +304,9 @@
     --text-text-dropdown-action:#fcfdfc;
     --text-text-info:#00b1cc;
     --text-text-inverted:#0a0b0a;
-    --text-text-link:#18b69b;
-    --text-text-link-hovered:#46c5af;
-    --text-text-link-pressed:#74d3c3;
+    --text-text-link: #8b5cf6;
+    --text-text-link-hovered: #986cfa;
+    --text-text-link-pressed:#986cfa;
     --text-text-maintenance:#6757ff;
     --text-text-pending:#369eff;
     --text-text-strong:#fcfdfc;

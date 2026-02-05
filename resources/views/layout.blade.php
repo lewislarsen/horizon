@@ -68,14 +68,17 @@
 
                                             <scheme-toggler></scheme-toggler>
 
-                                            <button class="text-icon-alpha relative content-center items-center rounded-md p-2 text-sm font-medium w-fit h-8 hover:bg-stronger/5 dark:hover:bg-white/10 hover:shadow-xs-hovered hover:text-icon-alpha-hovered focus-visible:bg-weak focus:outline-none focus-visible:shadow-xs-active flex"
-                                                    :class="{active: autoLoadsNewEntries}"
+                                            <button class="relative content-center items-center rounded-md p-2 text-sm font-medium w-fit h-8 text-icon-alpha hover:bg-stronger/5 dark:hover:bg-white/10 hover:shadow-xs-hovered hover:text-icon-alpha-hovered focus-visible:bg-weak focus:outline-none focus-visible:shadow-xs-active flex transition-colors"
                                                     v-on:click.prevent="autoLoadNewEntries"
                                                     title="Auto Load New Entries">
-                                                <span class="text-icon-alpha size-5 shrink-0">
+                                                <span class="size-5 shrink-0 relative">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="icon" fill="currentColor">
                                                         <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H3.989a.75.75 0 00-.75.75v4.242a.75.75 0 001.5 0v-2.43l.31.31a7 7 0 0011.712-3.138.75.75 0 00-1.449-.39zm1.23-3.723a.75.75 0 00.219-.53V2.929a.75.75 0 00-1.5 0V5.36l-.31-.31A7 7 0 003.239 8.188a.75.75 0 101.448.389A5.5 5.5 0 0113.89 6.11l.311.31h-2.432a.75.75 0 000 1.5h4.243a.75.75 0 00.53-.219z" clip-rule="evenodd" />
                                                     </svg>
+                                                    <span v-if="autoLoadsNewEntries" class="absolute -top-0.5 -right-0.5 flex size-2">
+                                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
+                                                        <span class="relative inline-flex rounded-full size-2 bg-success"></span>
+                                                    </span>
                                                 </span>
                                                 <span aria-hidden="true" class="pointer-events-auto absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden"></span>
                                             </button>
@@ -98,8 +101,8 @@
                             <div class="bg-app-background absolute -top-px -right-px size-4"></div>
                             <div class="relative -mx-px -mt-px h-8">
                                 <div class="bg-weaker border-weaker absolute inset-x-4 top-0 h-px border-t dark:border-[#191A19]"></div>
-                                <div class="bg-weaker border-weaker absolute top-0 left-0 size-4 rounded-tl-none border-t border-l sm:rounded-tl-lg dark:border-[#191A19]"></div>
-                                <div class="bg-weaker border-weaker absolute top-0 right-0 size-4 rounded-tr-none border-t border-r sm:rounded-tr-lg dark:border-[#191A19]"></div>
+                                <div class="bg-weaker border-weaker absolute top-0 left-0 size-4 rounded-tl-none border-t border-l sm:rounded-tl-lg dark:border-[#191A19] dark:bg-[#191A19]"></div>
+                                <div class="bg-weaker border-weaker absolute top-0 right-0 size-4 rounded-tr-none border-t border-r sm:rounded-tr-lg dark:border-[#191A19] dark:bg-[#191A19]"></div>
                             </div>
                         </div>
                     </div>
@@ -110,7 +113,7 @@
                         <div class="mx-auto w-full max-w-[1920px] px-4 pt-4 pb-20 sm:px-6 sm:pt-10" data-slot="main-content">
                             <div class="flex w-full flex-col gap-x-6 gap-y-4 sm:flex-row sm:items-start">
 
-                                <div class="min-h-0 w-full shrink-0 space-y-6 sm:sticky sm:ml-auto sm:w-[192px]" style="top: 155px;">
+                                <div class="min-h-0 w-full shrink-0 space-y-6 sm:sticky sm:ml-auto sm:w-[192px] sm:self-start">
                                     <h2 class="text-strong -ml-1 p-1 font-medium focus-visible:shadow-xs-selected focus-visible:outline-none focus:outline-none focus-visible:rounded-md sm:text-xl/8 text-base/8 ml-3 hidden sm:block">
                                         Horizon
                                     </h2>

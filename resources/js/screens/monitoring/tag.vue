@@ -17,9 +17,6 @@ export default {
       <div class="flex flex-col items-start justify-between gap-x-6 gap-y-3 px-5 py-4 sm:flex-row sm:items-center">
         <div class="space-y-1">
           <h3 class="font-medium text-strong">Recent Jobs for "{{ tag }}"</h3>
-          <p class="text-xssm text-default">
-            View all jobs tagged with {{ tag }}
-          </p>
         </div>
       </div>
 
