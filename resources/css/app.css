@@ -144,7 +144,7 @@
     --bg-bg-weaker-pressed-alpha:#022a0214;
     --border-border:#001a0026;
     --border-border-brand:#018a72ed;
-    --border-border-brand-weak:#0db09630;
+    --border-border-brand-weak: rgba(179, 67, 244, 0.18);
     --border-border-danger:#d2002cc4;
     --border-border-danger-hovered:#c10030db;
     --border-border-danger-weak:#ff002524;
@@ -200,8 +200,8 @@
     --text-text-toast-description:#9aa299;
     --text-text-toast-title:#eceeec;
     --text-text-warning:#ad5700;
-    --text-text-weak:#818780;
-    --text-text-weaker:#8b918a;
+    --text-text-weak: #7c7581;
+    --text-text-weaker: #6e6673;
     --text-text-white:#fff
 }
 .dark {
@@ -258,7 +258,7 @@
     --bg-bg-weaker-pressed-alpha:#ecfee521;
     --border-border:#323432;
     --border-border-brand:#21fdd7b8;
-    --border-border-brand-weak:#21f4ce2e;
+    --border-border-brand-weak: rgba(179, 67, 244, 0.18);
     --border-border-danger:#ff617beb;
     --border-border-danger-hovered:#ff949d;
     --border-border-danger-weak:#fd196242;
@@ -314,8 +314,8 @@
     --text-text-toast-description:#9aa299;
     --text-text-toast-title:#fcfdfc;
     --text-text-warning:#f1a10d;
-    --text-text-weak:#778175;
-    --text-text-weaker:#687366;
+    --text-text-weak: #7c7581;
+    --text-text-weaker: #6e6673;
     --text-text-white:#fff
 }
 @layer theme {
