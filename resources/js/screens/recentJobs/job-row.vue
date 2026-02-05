@@ -61,17 +61,17 @@ export default {
 
       <div class="text-right shrink-0">
         <div v-if="$route.params.type == 'pending' || $route.params.type == 'reserved'">
-          <div class="text-xssm font-medium text-weak uppercase tracking-wider">Queued</div>
+          <div class="text-xssm font-medium text-weak tracking-wider">Queued</div>
           <div class="text-sm text-default">{{ readableTimestamp(job.payload.pushedAt) }}</div>
         </div>
 
         <div v-else class="flex gap-6">
           <div class="hidden sm:block">
-            <div class="text-xssm font-medium text-weak uppercase tracking-wider">Runtime</div>
+            <div class="text-xssm font-medium text-weak tracking-wider">Runtime</div>
             <div class="text-sm text-default">{{ job.completed_at ? (job.completed_at - job.reserved_at).toFixed(2) + 's' : '-' }}</div>
           </div>
           <div>
-            <div class="text-xssm font-medium text-weak uppercase tracking-wider">Completed</div>
+            <div class="text-xssm font-medium text-weak tracking-wider">Completed</div>
             <div class="text-sm text-default">{{ readableTimestamp(job.completed_at) }}</div>
           </div>
         </div>

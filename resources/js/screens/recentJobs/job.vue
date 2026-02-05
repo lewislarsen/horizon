@@ -65,16 +65,16 @@ export default {
 
         <div v-if="ready" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
           <div class="space-y-4">
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Job ID</label><div class="text-sm font-medium text-strong">{{ job.id }}</div></div>
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Queue</label><div class="text-sm text-default">{{ job.queue }}</div></div>
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Pushed At</label><div class="text-sm text-default">{{ readableTimestamp(job.payload.pushedAt) }}</div></div>
-            <div v-if="delayedAt"><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Delayed Until</label><div class="text-sm text-default">{{ delayedAt }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">Job ID</label><div class="text-sm font-medium text-strong">{{ job.id }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">Queue</label><div class="text-sm text-default">{{ job.queue }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">Pushed At</label><div class="text-sm text-default">{{ readableTimestamp(job.payload.pushedAt) }}</div></div>
+            <div v-if="delayedAt"><label class="text-xssm font-medium text-weak tracking-wider block">Delayed Until</label><div class="text-sm text-default">{{ delayedAt }}</div></div>
           </div>
           <div class="space-y-4">
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Status</label><div class="text-sm font-medium capitalize" :class="job.status === 'completed' ? 'text-success' : 'text-default'">{{ job.status }}</div></div>
-            <div v-if="job.completed_at"><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Completed At</label><div class="text-sm text-default">{{ readableTimestamp(job.completed_at) }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">Status</label><div class="text-sm font-medium capitalize" :class="job.status === 'completed' ? 'text-success' : 'text-default'">{{ job.status }}</div></div>
+            <div v-if="job.completed_at"><label class="text-xssm font-medium text-weak tracking-wider block">Completed At</label><div class="text-sm text-default">{{ readableTimestamp(job.completed_at) }}</div></div>
             <div v-if="job.payload.tags && job.payload.tags.length">
-              <label class="text-xssm font-medium text-weak uppercase tracking-wider block">Tags</label>
+              <label class="text-xssm font-medium text-weak tracking-wider block">Tags</label>
               <div class="flex flex-wrap gap-1 mt-1">
                 <span v-for="tag in job.payload.tags" :key="tag" class="px-2 py-0.5 bg-weak border border-base rounded text-xs text-default">{{ tag }}</span>
               </div>
