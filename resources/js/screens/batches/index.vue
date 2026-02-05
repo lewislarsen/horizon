@@ -104,10 +104,10 @@ export default {
           </div>
         </div>
 
-        <div v-if="ready && batches.length" class="flex items-center justify-between border-t border-default px-5 py-3 bg-weak">
-          <button @click="previous" :disabled="page === 1" class="rounded-md border py-1.5 px-3 text-sm font-medium bg-default border-base text-strong shadow-xs disabled:opacity-50">Previous</button>
+        <div v-if="ready && batches.length" class="flex items-center justify-between border-none px-5 py-3 bg-weak">
+          <button @click="previous" :disabled="page === 1" class="rounded-md border py-1.5 px-3 text-sm font-medium bg-default border-base text-strong shadow-xs disabled:opacity-50 disabled:cursor-not-allowed hover:enabled:bg-hovered active:enabled:bg-pressed cursor-pointer transition-colors">Previous</button>
           <span class="text-sm text-default">Page {{ page }}</span>
-          <button @click="next" :disabled="batches.length < 50" class="rounded-md border py-1.5 px-3 text-sm font-medium bg-default border-base text-strong shadow-xs disabled:opacity-50">Next</button>
+          <button @click="next" :disabled="batches.length < 50" class="rounded-md border py-1.5 px-3 text-sm font-medium bg-default border-base text-strong shadow-xs disabled:opacity-50 disabled:cursor-not-allowed hover:enabled:bg-hovered active:enabled:bg-pressed cursor-pointer transition-colors">Next</button>
         </div>
       </div>
     </div>
