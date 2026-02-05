@@ -92,9 +92,9 @@
 .light-theme,
 :root {
     --bg-bg-app-background:#fff;
-    --bg-bg-brand:#18b69b;
-    --bg-bg-brand-weak: rgba(108, 5, 205, 0.02);
-    --bg-bg-brand-weaker:#fafefd;
+    --bg-bg-brand:#8b5cf6;
+    --bg-bg-brand-weak: rgba(139, 92, 246, 0.08);
+    --bg-bg-brand-weaker:#faf5ff;
     --bg-bg-card-hover:#f8faf8;
     --bg-bg-danger:#e54666;
     --bg-bg-danger-error:#3a141e;
@@ -143,8 +143,8 @@
     --bg-bg-weaker-hovered-alpha:#0027000d;
     --bg-bg-weaker-pressed-alpha:#022a0214;
     --border-border:#001a0026;
-    --border-border-brand:#018a72ed;
-    --border-border-brand-weak: rgba(179, 67, 244, 0.18);
+    --border-border-brand:#7c3aed;
+    --border-border-brand-weak: rgba(139, 92, 246, 0.18);
     --border-border-danger:#d2002cc4;
     --border-border-danger-hovered:#c10030db;
     --border-border-danger-weak:#ff002524;
@@ -168,7 +168,7 @@
     --border-border-weak-pressed:#051a013d;
     --border-border-weaker:#022a0214;
     --icon-icon-alpha:#020f0075;
-    --icon-icon-brand:#18b69b;
+    --icon-icon-brand:#8b5cf6;
     --icon-icon-danger:#e54666;
     --icon-icon-default:#8b918a;
     --icon-icon-disabled:#d8dcd8;
@@ -184,7 +184,7 @@
     --icon-icon-weak:#051a013d;
     --icon-icon-weak-hovered:#020f0075;
     --icon-icon-white:#fff;
-    --text-text-brand:#18b69b;
+    --text-text-brand:#8b5cf6;
     --text-text-danger:#ca244d;
     --text-text-default:#6b716a;
     --text-text-dropdown-action:#fff;
@@ -206,9 +206,9 @@
 }
 .dark {
     --bg-bg-app-background:#0a0b0a;
-    --bg-bg-brand:#18b69b;
-    --bg-bg-brand-weak: rgba(108, 5, 205, 0.02);
-    --bg-bg-brand-weaker:#05cd9b05;
+    --bg-bg-brand:#a78bfa;
+    --bg-bg-brand-weak: rgba(167, 139, 250, 0.08);
+    --bg-bg-brand-weaker:#1e1b2e;
     --bg-bg-card-hover:#191a19;
     --bg-bg-danger:#e54666;
     --bg-bg-danger-error:#feeaed;
@@ -257,8 +257,8 @@
     --bg-bg-weaker-hovered-alpha:#effee214;
     --bg-bg-weaker-pressed-alpha:#ecfee521;
     --border-border:#323432;
-    --border-border-brand:#21fdd7b8;
-    --border-border-brand-weak: rgba(179, 67, 244, 0.18);
+    --border-border-brand:#a78bfa;
+    --border-border-brand-weak: rgba(167, 139, 250, 0.18);
     --border-border-danger:#ff617beb;
     --border-border-danger-hovered:#ff949d;
     --border-border-danger-weak:#fd196242;
@@ -282,7 +282,7 @@
     --border-border-weak-pressed:#f1ffed40;
     --border-border-weaker:#ffffff0f;
     --icon-icon-alpha:#e6ffe166;
-    --icon-icon-brand:#18b69b;
+    --icon-icon-brand:#a78bfa;
     --icon-icon-danger:#e54666;
     --icon-icon-default:#687366;
     --icon-icon-disabled:#3b3f3a;
@@ -298,7 +298,7 @@
     --icon-icon-weak:#f1ffed40;
     --icon-icon-weak-hovered:#e6ffe166;
     --icon-icon-white:#0a0b0a;
-    --text-text-brand:#18b69b;
+    --text-text-brand:#a78bfa;
     --text-text-danger:#e54666;
     --text-text-default:#9aa299;
     --text-text-dropdown-action:#fcfdfc;

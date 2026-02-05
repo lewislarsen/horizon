@@ -243,7 +243,7 @@ export default {
               </div>
               <div class="text-weak flex shrink-0 justify-end items-center">
                 <span class="text-sm text-default" :class="{ 'font-medium': queue.split_queues }">
-                  {{ humanTime(queue.wait) }}
+                  {{ humanTime(queue.wait) }} wait
                 </span>
               </div>
             </div>
