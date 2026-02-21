@@ -45,14 +45,22 @@ export default {
     loadJobs(starting = 0, refreshing = false) {
       if (!refreshing) { this.ready = false; }
 
-      this.$http.get(Horizon.basePath + '/api/jobs/failed' + (this.tagSearchPhrase ? '?tag=' + encodeURIComponent(this.tagSearchPhrase) : '') + (this.tagSearchPhrase ? '&starting_at=' + starting : '?starting_at=' + starting) + '&limit=' + this.perPage)
+      var tagQuery = this.tagSearchPhrase ? 'tag=' + this.tagSearchPhrase + '&' : '';
+
+      this.$http.get(Horizon.basePath + '/api/jobs/failed?' + tagQuery + 'starting_at=' + starting)
           .then(response => {
+            if (!this.$root.autoLoadsNewEntries && refreshing && !response.data.jobs.length) {
+              this.ready = true;
+              return;
+            }
+
             if (!this.$root.autoLoadsNewEntries && refreshing && this.jobs.length && response.data.jobs[0]?.id !== this.jobs[0]?.id) {
               this.hasNewEntries = true;
             } else {
               this.jobs = response.data.jobs;
               this.totalPages = Math.ceil(response.data.total / this.perPage);
             }
+
             this.ready = true;
           });
     },
@@ -64,18 +72,17 @@ export default {
     },
 
     refreshJobsPeriodically() {
-      if (this.page != 1) return;
-      this.loadJobs(0, true);
+      this.loadJobs((this.page - 1) * this.perPage, true);
     },
 
     previous() {
-      this.loadJobs((this.page - 2) * this.perPage);
+      this.loadJobs((this.page - 2) * this.perPage - 1);
       this.page -= 1;
       this.hasNewEntries = false;
     },
 
     next() {
-      this.loadJobs(this.page * this.perPage);
+      this.loadJobs(this.page * this.perPage - 1);
       this.page += 1;
       this.hasNewEntries = false;
     },
@@ -83,14 +90,28 @@ export default {
     retry(id) {
       if (this.isRetrying(id)) return;
       this.retryingJobs.push(id);
-      this.$http.post(Horizon.basePath + '/api/jobs/failed/retry/' + id)
+      this.$http.post(Horizon.basePath + '/api/jobs/retry/' + id)
           .then(() => {
-            setTimeout(() => { this.retryingJobs = _.without(this.retryingJobs, id); }, 5000);
-          });
+            setTimeout(() => {
+              this.retryingJobs = this.retryingJobs.filter(job => job != id);
+            }, 5000);
+          }).catch(error => {
+        this.retryingJobs = this.retryingJobs.filter(job => job != id);
+      });
     },
 
-    isRetrying(id) { return _.includes(this.retryingJobs, id); },
-    hasCompleted(job) { return _.find(job.retried_by, retry => retry.status === 'completed'); }
+    isRetrying(id) { return this.retryingJobs.includes(id); },
+
+    hasCompleted(job) { return job.retried_by?.find(retry => retry.status === 'completed'); },
+
+    wasRetried(job) { return job.retried_by && job.retried_by.length; },
+
+    isRetry(job) { return job.payload.retry_of; },
+
+    retriedJobTooltip(job) {
+      let lastRetry = job.retried_by[job.retried_by.length - 1];
+      return `Total retries: ${job.retried_by.length}, Last retry status: ${this.upperFirst(lastRetry.status)}`;
+    },
   }
 }
 </script>
@@ -140,12 +161,27 @@ export default {
         <div v-if="ready && jobs.length > 0" class="divide-default divide-y">
           <div v-for="job in jobs" :key="job.id" class="hover:bg-card-hover px-5 py-3 flex items-center justify-between gap-4 transition-colors">
             <div class="flex-1 min-w-0">
-              <router-link :to="{ name: 'failed-jobs-preview', params: { jobId: job.id }}" class="text-sm font-medium text-strong truncate block hover:text-brand">
-                {{ jobBaseName(job.name) }}
-              </router-link>
+              <div class="flex items-center gap-2">
+                <router-link :to="{ name: 'failed-jobs-preview', params: { jobId: job.id }}" class="text-sm font-medium text-strong truncate hover:text-brand">
+                  {{ jobBaseName(job.name) }}
+                </router-link>
+                <span v-if="wasRetried(job)" :title="retriedJobTooltip(job)" class="px-1.5 py-0.5 bg-weak border border-base rounded text-xs text-weak">
+                  Retried
+                </span>
+              </div>
               <div class="mt-1 flex items-center gap-2 text-xssm text-weak">
                 <span>Queue: {{ job.queue }}</span>
+                <span>• Attempts: {{ job.payload.attempts }}</span>
+                <span v-if="isRetry(job)">
+                  • Retry of
+                  <router-link :to="{ name: 'failed-jobs-preview', params: { jobId: job.payload.retry_of }}" class="text-link">
+                    {{ job.payload.retry_of.split('-')[0] }}
+                  </router-link>
+                </span>
                 <span>• Failed {{ readableTimestamp(job.failed_at) }}</span>
+              </div>
+              <div v-if="job.payload.tags && job.payload.tags.length" class="mt-1 flex flex-wrap gap-1">
+                <span v-for="tag in job.payload.tags" :key="tag" class="px-1.5 py-0.5 bg-weak border border-base rounded text-xs text-weak">{{ tag }}</span>
               </div>
             </div>
 
