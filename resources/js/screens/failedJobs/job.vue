@@ -60,11 +60,19 @@ export default {
     <div class="overflow-hidden shadow-inner p-1 bg-weak rounded-xl">
       <div class="flex items-center justify-between px-5 py-4">
         <h3 class="font-medium text-strong">{{ ready ? jobBaseName(job.name) : 'Job Details' }}</h3>
-        <button v-if="ready" @click.prevent="retry(job.id)" :disabled="retrying" class="flex items-center gap-2 rounded-md bg-brand px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-hovered disabled:opacity-50">
-          <svg class="size-4" :class="{ 'animate-spin': retrying }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H3.989a.75.75 0 00-.75.75v4.242a.75.75 0 001.5 0v-2.43l.31.31a7 7 0 0011.712-3.138.75.75 0 00-1.449-.39zm1.23-3.723a.75.75 0 00.219-.53V2.929a.75.75 0 00-1.5 0V5.36l-.31-.31A7 7 0 003.239 8.188a.75.75 0 101.448.389A5.5 5.5 0 0113.89 6.11l.311.31h-2.432a.75.75 0 000 1.5h4.243a.75.75 0 00.53-.219z" clip-rule="evenodd" />
-          </svg>
-          Retry Job
+        <button
+            v-if="ready"
+            type="button"
+            @click.prevent="retry(job.id)"
+            :disabled="retrying"
+            class="cursor-pointer flex relative group/button justify-center items-center rounded-md border px-4 py-2 text-sm font-medium text-nowrap h-8 pl-2.5 pr-4 bg-default border-base text-strong shadow-xs hover:bg-weak dark:hover:bg-hovered focus:outline-none shrink-0 disabled:opacity-50"
+        >
+    <span class="size-5 shrink-0 mr-1.5 text-icon-alpha group-hover/button:text-icon-strong">
+      <svg :class="{ 'animate-spin': retrying }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H3.989a.75.75 0 00-.75.75v4.242a.75.75 0 001.5 0v-2.43l.31.31a7 7 0 0011.712-3.138.75.75 0 00-1.449-.39zm1.23-3.723a.75.75 0 00.219-.53V2.929a.75.75 0 00-1.5 0V5.36l-.31-.31A7 7 0 003.239 8.188a.75.75 0 101.448.389A5.5 5.5 0 0113.89 6.11l.311.31h-2.432a.75.75 0 000 1.5h4.243a.75.75 0 00.53-.219z" clip-rule="evenodd" />
+      </svg>
+    </span>
+          <span>Retry Job</span>
         </button>
       </div>
 
@@ -77,24 +85,24 @@ export default {
 
         <div v-if="ready" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
           <div class="space-y-4">
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">ID</label><div class="text-sm font-medium text-strong">{{ job.id }}</div></div>
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Connection</label><div class="text-sm text-default">{{ job.connection }}</div></div>
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Queue</label><div class="text-sm text-default">{{ job.queue }}</div></div>
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Failed At</label><div class="text-sm text-default">{{ readableTimestamp(job.failed_at) }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">ID</label><div class="text-sm font-medium text-strong">{{ job.id }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">Connection</label><div class="text-sm text-default">{{ job.connection }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">Queue</label><div class="text-sm text-default">{{ job.queue }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">Failed At</label><div class="text-sm text-default">{{ readableTimestamp(job.failed_at) }}</div></div>
           </div>
           <div class="space-y-4">
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Attempts</label><div class="text-sm text-default">{{ job.payload.attempts }}</div></div>
-            <div><label class="text-xssm font-medium text-weak uppercase tracking-wider block">Retries</label><div class="text-sm text-default">{{ job.retried_by.length }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">Attempts</label><div class="text-sm text-default">{{ job.payload.attempts }}</div></div>
+            <div><label class="text-xssm font-medium text-weak tracking-wider block">Retries</label><div class="text-sm text-default">{{ job.retried_by.length }}</div></div>
             <div v-if="job.payload.retry_of">
-              <label class="text-xssm font-medium text-weak uppercase tracking-wider block">Retry of ID</label>
+              <label class="text-xssm font-medium text-weak tracking-wider block">Retry of ID</label>
               <router-link :to="{ name: 'failed-jobs-preview', params: { jobId: job.payload.retry_of }}" class="text-sm text-link">{{ job.payload.retry_of }}</router-link>
             </div>
             <div v-if="prettyPrintJob(job.payload.data).batchId">
-              <label class="text-xssm font-medium text-weak uppercase tracking-wider block">Batch</label>
+              <label class="text-xssm font-medium text-weak tracking-wider block">Batch</label>
               <router-link :to="{ name: 'batches-preview', params: { batchId: prettyPrintJob(job.payload.data).batchId }}" class="text-sm text-link">{{ prettyPrintJob(job.payload.data).batchId }}</router-link>
             </div>
             <div v-if="job.payload.tags && job.payload.tags.length">
-              <label class="text-xssm font-medium text-weak uppercase tracking-wider block">Tags</label>
+              <label class="text-xssm font-medium text-weak tracking-wider block">Tags</label>
               <div class="flex flex-wrap gap-1 mt-1">
                 <span v-for="tag in job.payload.tags" :key="tag" class="px-2 py-0.5 bg-weak border border-base rounded text-xs text-default">{{ tag }}</span>
               </div>
@@ -120,7 +128,7 @@ export default {
 
     <div v-if="ready" class="overflow-hidden shadow-inner p-1 bg-weak rounded-xl">
       <div class="px-5 py-4"><h3 class="font-medium text-strong">Data</h3></div>
-      <div class="bg-default shadow-xs-with-border rounded-lg p-5">
+      <div class="bg-default shadow-xs-with-border rounded-lg p-5 font-mono">
         <vue-json-pretty :data="prettyPrintJob(job.payload.data)" />
       </div>
     </div>

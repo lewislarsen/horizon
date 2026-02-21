@@ -187,7 +187,7 @@ export default {
 
             <div class="flex items-center gap-6 shrink-0">
               <div class="text-right hidden md:block">
-                <div class="text-xssm font-medium text-weak uppercase tracking-wider">Runtime</div>
+                <div class="text-xssm font-medium text-weak tracking-wider">Runtime</div>
                 <div class="text-sm text-default">{{ job.failed_at && job.reserved_at ? (job.failed_at - job.reserved_at).toFixed(2) + 's' : '-' }}</div>
               </div>
 
@@ -205,7 +205,7 @@ export default {
           </div>
         </div>
 
-        <div v-if="ready && jobs.length" class="flex items-center justify-between border-t border-default px-5 py-3 bg-weak">
+        <div v-if="ready && jobs.length" class="flex items-center justify-between border-none border-default px-5 py-3 bg-weak">
           <button @click="previous" :disabled="page === 1" class="rounded-md border py-1.5 px-3 text-sm font-medium bg-default border-base text-strong shadow-xs hover:bg-hovered transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
           <span class="text-sm text-default font-medium">Page {{ page }} of {{ totalPages }}</span>
           <button @click="next" :disabled="page >= totalPages" class="rounded-md border py-1.5 px-3 text-sm font-medium bg-default border-base text-strong shadow-xs hover:bg-hovered transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
