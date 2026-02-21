@@ -5,26 +5,49 @@ export default {
       ready: false,
       loadingNewEntries: false,
       hasNewEntries: false,
-      page: 1,
-      previousFirstId: null,
+      page: parseInt(this.$route.query.page) || 1,
+      previousFirstId: this.$route.query.previous_first_id || null,
       batches: [],
+      searchQuery: this.$route.query.query || '',
+      searchTimeout: null,
     };
   },
   mounted() {
     document.title = "Horizon - Batches";
-    this.loadBatches();
+    this.loadBatches(this.$route.query.before_id || '');
   },
   watch: {
     '$route'() { this.page = 1; this.loadBatches(); },
     '$root.autoLoadsNewEntries'(autoLoadsNewEntries) {
       if (autoLoadsNewEntries && this.hasNewEntries) { this.hasNewEntries = false; }
-    }
+    },
+    searchQuery(newVal, oldVal) {
+      if (!oldVal) return;
+
+      clearTimeout(this.searchTimeout);
+
+      this.searchTimeout = setTimeout(() => {
+        this.page = 1;
+        this.previousFirstId = null;
+
+        this.loadBatches();
+        this.updateQueryParams();
+      }, 500);
+    },
   },
   methods: {
     loadBatches(beforeId = '', refreshing = false) {
       if (!refreshing) { this.ready = false; }
-      this.$http.get(Horizon.basePath + '/api/batches?before_id=' + beforeId)
+
+      var searchQuery = this.searchQuery ? 'query=' + encodeURIComponent(this.searchQuery) + '&' : '';
+
+      this.$http.get(Horizon.basePath + '/api/batches?' + searchQuery + 'before_id=' + beforeId)
           .then(response => {
+            if (!this.$root.autoLoadsNewEntries && refreshing && !response.data.batches.length) {
+              this.ready = true;
+              return;
+            }
+
             if (!this.$root.autoLoadsNewEntries && refreshing && this.batches.length && response.data.batches[0]?.id !== this.batches[0]?.id) {
               this.hasNewEntries = true;
             } else {
@@ -35,35 +58,79 @@ export default {
     },
     loadNewEntries() {
       this.batches = [];
+      this.page = 1;
+      this.previousFirstId = null;
       this.loadBatches('', false);
       this.hasNewEntries = false;
+      this.updateQueryParams();
     },
     refreshBatchesPeriodically() {
       if (this.page != 1) return;
+      if (this.searchQuery) return;
       this.loadBatches('', true);
     },
     previous() {
-      this.loadBatches(this.page == 2 ? '' : this.previousFirstId);
+      var beforeId = this.page == 2 ? '' : this.previousFirstId;
+      this.loadBatches(beforeId);
       this.page -= 1;
       this.hasNewEntries = false;
+      this.updateQueryParams(beforeId);
     },
     next() {
       this.previousFirstId = this.batches[0]?.id + '0';
-      this.loadBatches(this.batches.slice(-1)[0]?.id);
+      var beforeId = this.batches.slice(-1)[0]?.id;
+      this.loadBatches(beforeId);
       this.page += 1;
       this.hasNewEntries = false;
-    }
+      this.updateQueryParams(beforeId);
+    },
+    clearSearch() {
+      this.searchQuery = '';
+    },
+    updateQueryParams(beforeId) {
+      var query = {};
+
+      if (this.searchQuery) query.query = this.searchQuery;
+      if (this.page > 1) query.page = this.page;
+      if (beforeId) query.before_id = beforeId;
+      if (this.previousFirstId && this.page > 1) query.previous_first_id = this.previousFirstId;
+
+      this.$router.replace({ query }).catch(() => {});
+    },
   }
 }
-</script>
 
 <template>
   <div>
     <poll @poll="refreshBatchesPeriodically" />
 
+<<<<<<< HEAD
     <div class="overflow-hidden shadow-inner p-1 bg-weak rounded-xl">
       <div class="flex items-center justify-between px-5 py-4">
         <h3 class="font-medium text-strong">Batches</h3>
+
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg class="h-4 w-4 text-icon-alpha" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <input
+            v-model="searchQuery"
+            type="text"
+            class="block w-64 pl-10 pr-10 py-1.5 text-sm bg-default border border-base text-strong rounded-md placeholder:text-weak focus:outline-none focus:ring-2 focus:ring-brand-weak focus:border-brand"
+            placeholder="Search batches..."
+          />
+          <button
+            v-if="searchQuery"
+            @click="clearSearch"
+            class="absolute inset-y-0 right-0 pr-3 flex items-center"
+          >
+            <svg class="h-4 w-4 text-icon-alpha hover:text-icon-strong" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div class="bg-default shadow-xs-with-border rounded-lg overflow-hidden">
