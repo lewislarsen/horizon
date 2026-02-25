@@ -1,12 +1,12 @@
 {
-    "name": "laravel/horizon",
-    "description": "Dashboard and code-driven configuration for Laravel queues.",
+    "name": "lewislarsen/horizon",
+    "description": "A fork of Laravel Horizon with an enhanced dashboard and additional features.",
     "keywords": ["laravel", "queue"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Taylor Otwell",
-            "email": "taylor@laravel.com"
+            "name": "Lewis Larsen",
+            "email": "lewis@larsens.dev"
         }
     ],
     "require": {

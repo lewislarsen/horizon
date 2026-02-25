@@ -1,4 +1,24 @@
-# Upgrade Guide 
+# Upgrade Guide
+
+## Upgrading From Official Laravel Horizon
+
+If you're migrating from the official Laravel Horizon package to this fork, simply update your `composer.json`:
+```json
+{
+    "require": {
+        "lewislarsen/horizon": "^5.45"
+    }
+}
+```
+
+Then run:
+```bash
+composer update lewislarsen/horizon
+```
+
+No configuration changes are required. This fork maintains full compatibility with the official Laravel Horizon repository.
+
+---
 
 ## Upgrading To 5.0 From 4.x
 
