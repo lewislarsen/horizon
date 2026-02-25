@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/horizon/compare/v5.45.0...5.x)
+## [Unreleased](https://github.com/laravel/horizon/compare/v5.45.1...5.x)
+
+## [v5.45.1](https://github.com/laravel/horizon/compare/v5.45.0...v5.45.1) - 2026-02-25
+
+**Full Changelog**: https://github.com/lewislarsen/horizon/compare/v5.45.0...v5.45.1
+
+- Updated attribution details on the footer.
+- Tweaked grammar when displaying processes on the dashboard.
+- Minor css text colour tweaks
 
 ## [v5.45.0](https://github.com/laravel/horizon/compare/v5.44.0...v5.45.0) - 2026-02-21
 
