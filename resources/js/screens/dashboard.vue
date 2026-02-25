@@ -286,10 +286,10 @@ export default {
           <template v-for="queue in workload">
             <div class="flex w-full justify-between py-3 hover:bg-card-hover px-5 items-center gap-8">
               <div class="flex items-center gap-3 flex-1">
-                <div class="text-sm font-medium shrink leading-5 w-full" :class="{ 'text-strong': queue.split_queues, 'text-default': !queue.split_queues }">
+                <div class="text-sm font-medium shrink leading-5 w-full text-strong">
                   {{ queue.name.replace(/,/g, ', ') }}
                   <p class="mt-1 font-normal text-weak text-xssm">
-                    {{ queue.length ? queue.length.toLocaleString() : 0 }} jobs • {{ queue.processes ? queue.processes.toLocaleString() : 0 }} processes
+                    {{ queue.length ? queue.length.toLocaleString() : 0 }} {{ queue.length === 1 ? 'job' : 'jobs' }} • {{ queue.processes ? queue.processes.toLocaleString() : 0 }} {{ queue.processes === 1 ? 'process' : 'processes' }}
                   </p>
                 </div>
               </div>
@@ -381,7 +381,7 @@ export default {
                   {{ superVisorDisplayName(supervisor.name, worker.name) }}
                 </div>
                 <p class="mt-1 font-normal text-weak text-xssm">
-                  {{ supervisor.options.connection }} • {{ supervisor.options.queue.replace(/,/g, ', ') }} • {{ countProcesses(supervisor.processes) }} processes
+                  {{ supervisor.options.connection }} • {{ supervisor.options.queue.replace(/,/g, ', ') }} • {{ countProcesses(supervisor.processes) }} {{ countProcesses(supervisor.processes) === 1 ? 'process' : 'processes' }}
                 </p>
               </div>
             </div>
