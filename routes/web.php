@@ -41,6 +41,10 @@ Route::prefix('api')->group(function () {
     Route::get('/jobs/failed/{id}', 'FailedJobsController@show')->name('horizon.failed-jobs.show');
     Route::post('/jobs/retry/{id}', 'RetryController@store')->name('horizon.retry-jobs.show');
     Route::get('/jobs/{id}', 'JobsController@show')->name('horizon.jobs.show');
+
+    // Queue Routes...
+    Route::get('/queues', 'QueueController@index')->name('horizon.queues.index');
+    Route::post('/queues/clear', 'QueueController@clear')->name('horizon.queues.clear');
 });
 
 // Catch-all Route...
