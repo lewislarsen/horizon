@@ -14,12 +14,41 @@ Horizon provides a beautiful dashboard and code-driven configuration for your La
 All of your worker configuration is stored in a single, simple configuration file, allowing your configuration to stay in source control where your entire team can collaborate.
 
 <p align="center">
-<img src="https://laravel.com/img/docs/horizon-example.png">
+<img src="https://i.postimg.cc/kG0xJgxy/horizon-new-ui.png">
 </p>
+
+## Differences
+
+This fork aims to maintain full parity with the official Laravel Horizon repository. We only intend to improve upon Laravel Horizon with an enhanced UI and additional features that wouldn't necessarily be merged into the main repository.
+
+**What's Different:**
+- Modern UI redesign with visual design language inspired by Laravel Forge and Laravel Cloud
+- Clear queue functionality directly from the dashboard UI
+
+## Installation
+
+To use this fork in your Laravel application, add the following to your `composer.json`:
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/lewislarsen/horizon"
+        }
+    ]
+}
+```
+
+Then require the package:
+```bash
+composer require laravel/horizon
+```
+
+After installation, continue with the standard Horizon setup as documented in the official documentation.
 
 ## Official Documentation
 
-Documentation for Horizon can be found on the [Laravel website](https://laravel.com/docs/horizon).
+Documentation for Horizon can be found on the [Laravel website](https://laravel.com/docs/horizon). Since we maintain parity with the official repository, all documentation applies to this fork as well.
 
 ## Contributing
 
