@@ -179,7 +179,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" class="text-icon size-4">
                                     <path fill="currentColor" fill-rule="evenodd" d="M4.368 1.306c.064 0 .122.02.174.053l2.46 1.414a.31.31 0 0 1 .142.154.378.378 0 0 1 .023.145v5.055L8.972 7.09V4.466c0-.068.016-.131.057-.189a.462.462 0 0 1 .15-.126l2.454-1.412a.29.29 0 0 1 .145-.042.29.29 0 0 1 .144.042l2.5 1.441a.285.285 0 0 1 .128.139c.023.054.024.11.024.151v2.801a.338.338 0 0 1-.037.169.359.359 0 0 1-.132.128l-.004.002-2.297 1.32v2.614a.353.353 0 0 1-.042.184.369.369 0 0 1-.138.127l-.002.001-4.905 2.82a.383.383 0 0 1-.184.053.383.383 0 0 1-.185-.054l-.003-.001-4.891-2.821-.014-.009a.522.522 0 0 1-.099-.075.258.258 0 0 1-.071-.187V3.03a.28.28 0 0 1 .144-.245l2.478-1.427a.35.35 0 0 1 .176-.052ZM2.563 3.06 4.364 2.02 6.17 3.06 4.364 4.1l-1.8-1.041Zm9.212 2.436L9.971 4.458l1.804-1.038 1.8 1.038-1.8 1.038ZM6.506 3.632 4.701 4.674v4.872l1.805-1.042V3.632Zm-2.47 1.042-1.81-1.039v7.691l4.28 2.462v-2.075l-2.279-1.288-.005-.004c-.034-.02-.084-.05-.12-.096a.307.307 0 0 1-.066-.202V4.674ZM9.638 7.09v-2.06l1.809 1.043v2.051L9.637 7.09Zm2.466 1.034v-2.05l1.809-1.043v2.059l-1.81 1.034ZM6.83 11.136l-1.79-1.018 4.265-2.46 1.8 1.043-4.275 2.435Zm.337 2.652v-2.076l4.28-2.446v2.06l-4.28 2.462Z" clip-rule="evenodd"/>
                                 </svg>
-                                <span>Laravel © 2026</span>
+                                <span>Laravel Horizon</span>
                             </div>
                             <span> · </span>
                             <div class="flex items-center gap-1">
@@ -188,7 +188,7 @@
                         </div>
                         <div class="flex items-center gap-6">
                             <a href="https://laravel.com/docs/horizon" rel="noreferrer" target="_blank" class="hover:text-link-hovered focus-visible:shadow-xs-selected rounded focus:outline-none">Docs</a>
-                            <a href="https://github.com/laravel/horizon" rel="noreferrer" target="_blank" class="hover:text-link-hovered focus-visible:shadow-xs-selected rounded focus:outline-none">GitHub</a>
+                            <a href="https://github.com/lewislarsen/horizon" rel="noreferrer" target="_blank" class="hover:text-link-hovered focus-visible:shadow-xs-selected rounded focus:outline-none">GitHub</a>
                         </div>
                     </div>
                 </footer>
