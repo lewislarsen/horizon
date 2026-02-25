@@ -260,14 +260,14 @@ export default {
 
             <div class="px-5 py-4">
               <small class="text-weak font-medium text-xssm">Max Runtime</small>
-              <p class="text-strong text-2xl font-medium mt-2 mb-0">
+              <p class="text-strong text-2xl font-medium mt-2 mb-0 truncate"  :title="stats.queueWithMaxRuntime || '-'">
                 {{ stats.queueWithMaxRuntime ? stats.queueWithMaxRuntime : '-' }}
               </p>
             </div>
 
             <div class="px-5 py-4">
               <small class="text-weak font-medium text-xssm">Max Throughput</small>
-              <p class="text-strong text-2xl font-medium mt-2 mb-0">
+              <p class="text-strong text-2xl font-medium mt-2 mb-0 truncate"  :title="stats.queueWithMaxThroughput || '-'">
                 {{ stats.queueWithMaxThroughput ? stats.queueWithMaxThroughput : '-' }}
               </p>
             </div>
