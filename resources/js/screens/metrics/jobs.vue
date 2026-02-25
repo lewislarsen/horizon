@@ -1,79 +1,53 @@
 <script type="text/ecmascript-6">
-    export default {
-        components: {},
-
-
-        /**
-         * The component's data.
-         */
-        data() {
-            return {
-                ready: false,
-                jobs: []
-            };
-        },
-
-
-        /**
-         * Prepare the component.
-         */
-        mounted() {
-            this.loadJobs();
-        },
-
-
-        methods: {
-            /**
-             * Load the jobs.
-             */
-            loadJobs() {
-                this.ready = false;
-
-                this.$http.get(Horizon.basePath + '/api/metrics/jobs')
-                    .then(response => {
-                        this.jobs = response.data;
-
-                        this.ready = true;
-                    });
-            }
-        }
+export default {
+  data() {
+    return {
+      ready: false,
+      jobs: []
+    };
+  },
+  mounted() {
+    this.loadJobs();
+  },
+  methods: {
+    loadJobs() {
+      this.ready = false;
+      this.$http.get(Horizon.basePath + '/api/metrics/jobs')
+          .then(response => {
+            this.jobs = response.data;
+            this.ready = true;
+          });
     }
+  }
+}
 </script>
 
 <template>
-    <div>
-        <div v-if="!ready" class="d-flex align-items-center justify-content-center card-bg-secondary p-5 bottom-radius">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="icon spin me-2 fill-text-color">
-                <path d="M12 10a2 2 0 0 1-3.41 1.41A2 2 0 0 1 10 8V0a9.97 9.97 0 0 1 10 10h-8zm7.9 1.41A10 10 0 1 1 8.59.1v2.03a8 8 0 1 0 9.29 9.29h2.02zm-4.07 0a6 6 0 1 1-7.25-7.25v2.1a3.99 3.99 0 0 0-1.4 6.57 4 4 0 0 0 6.56-1.42h2.1z"></path>
-            </svg>
-
-            <span>Loading...</span>
-        </div>
-
-
-        <div v-if="ready && jobs.length == 0" class="d-flex flex-column align-items-center justify-content-center card-bg-secondary p-5 bottom-radius">
-            <span>There aren't any jobs.</span>
-        </div>
-
-        <table v-if="ready && jobs.length > 0" class="table table-hover mb-0">
-            <thead>
-            <tr>
-                <th>Job</th>
-            </tr>
-            </thead>
-
-            <tbody>
-
-
-            <tr v-for="job in jobs" :key="job">
-                <td>
-                    <router-link class="text-decoration-none" :to="{ name: 'metrics-preview', params: { type: 'jobs', slug: job }}">
-                        {{ job }}
-                    </router-link>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+  <div class="bg-default shadow-xs-with-border rounded-lg overflow-hidden">
+    <div v-if="!ready" class="flex items-center justify-center p-5">
+      <svg aria-hidden="true" class="size-5 shrink-0 mr-2 text-icon-alpha animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+      </svg>
+      <span class="text-default">Loading...</span>
     </div>
 
+    <div v-if="ready && jobs.length == 0" class="p-5 text-center">
+      <span class="text-weak">There aren't any jobs.</span>
+    </div>
+
+    <div v-if="ready && jobs.length > 0" class="divide-default divide-y">
+      <div v-for="job in jobs" :key="job" class="hover:bg-card-hover group">
+        <router-link
+            :to="{ name: 'metrics-preview', params: { type: 'jobs', slug: job }}"
+            class="flex w-full justify-between py-3 px-5 items-center gap-8 text-sm font-medium text-strong"
+        >
+          {{ job }}
+          <svg class="size-4 text-icon-alpha group-hover:text-icon-strong transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+          </svg>
+        </router-link>
+      </div>
+    </div>
+  </div>
 </template>
