@@ -99,12 +99,12 @@ export default {
     },
   }
 }
+</script>
 
 <template>
   <div>
     <poll @poll="refreshBatchesPeriodically" />
 
-<<<<<<< HEAD
     <div class="overflow-hidden shadow-inner p-1 bg-weak rounded-xl">
       <div class="flex items-center justify-between px-5 py-4">
         <h3 class="font-medium text-strong">Batches</h3>
@@ -116,15 +116,15 @@ export default {
             </svg>
           </div>
           <input
-            v-model="searchQuery"
-            type="text"
-            class="block w-64 pl-10 pr-10 py-1.5 text-sm bg-default border border-base text-strong rounded-md placeholder:text-weak focus:outline-none focus:ring-2 focus:ring-brand-weak focus:border-brand"
-            placeholder="Search batches..."
+              v-model="searchQuery"
+              type="text"
+              class="block w-64 pl-10 pr-10 py-1.5 text-sm bg-default border border-base text-strong rounded-md placeholder:text-weak focus:outline-none focus:ring-2 focus:ring-brand-weak focus:border-brand"
+              placeholder="Search batches..."
           />
           <button
-            v-if="searchQuery"
-            @click="clearSearch"
-            class="absolute inset-y-0 right-0 pr-3 flex items-center"
+              v-if="searchQuery"
+              @click="clearSearch"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center"
           >
             <svg class="h-4 w-4 text-icon-alpha hover:text-icon-strong" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
