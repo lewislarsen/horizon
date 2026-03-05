@@ -36,6 +36,11 @@ export default {
             this.unserialized.delay.timezone
         ).fromNow(true);
       }
+
+      if (this.job.delay > 0) {
+        return moment.duration(this.job.delay, 'seconds').humanize();
+      }
+
       return null;
     },
   },

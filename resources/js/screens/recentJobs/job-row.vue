@@ -26,6 +26,8 @@ export default {
       } else if (this.unserialized && this.unserialized.delay) {
         return this.formatDate(this.job.payload.pushedAt).add(this.unserialized.delay, 'seconds')
             .fromNow(true);
+      } else if (this.job.delay > 0) {
+        return moment.duration(this.job.delay, 'seconds').humanize();
       }
 
       return null;
