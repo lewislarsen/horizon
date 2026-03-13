@@ -1,6 +1,19 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/horizon/compare/v5.45.3...5.x)
+## [Unreleased](https://github.com/laravel/horizon/compare/v5.45.4...5.x)
+
+## [v5.45.4](https://github.com/laravel/horizon/compare/v5.45.3...v5.45.4) - 2026-03-13
+
+### v5.45.4
+
+Patch release to align the tagged release with generated frontend assets.
+
+#### Included
+
+- Compile assets
+- Changelog update
+
+No additional source-level feature or behavior changes beyond `v5.45.3`.
 
 ## [v5.45.3](https://github.com/laravel/horizon/compare/v5.45.1...v5.45.3) - 2026-03-05
 
