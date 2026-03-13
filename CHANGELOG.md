@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/horizon/compare/v5.45.1...5.x)
+## [Unreleased](https://github.com/laravel/horizon/compare/v5.45.3...5.x)
+
+## [v5.45.3](https://github.com/laravel/horizon/compare/v5.45.1...v5.45.3) - 2026-03-05
+
+**Full Changelog**: https://github.com/lewislarsen/horizon/compare/v5.45.1...v5.45.3
+
+Changes:
+
+- Show delayed badge for jobs pending retry backoff [Source](https://github.com/lewislarsen/horizon/commit/e32ab099a47e155aa7dd56274026ad0062808503)
 
 ## [v5.45.1](https://github.com/laravel/horizon/compare/v5.45.0...v5.45.1) - 2026-02-25
 
