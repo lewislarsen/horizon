@@ -84,9 +84,6 @@ export default {
       this.hasNewEntries = false;
       this.updateQueryParams(beforeId);
     },
-    clearSearch() {
-      this.searchQuery = '';
-    },
     updateQueryParams(beforeId) {
       var query = {};
 
@@ -109,27 +106,18 @@ export default {
       <div class="flex items-center justify-between px-5 py-4">
         <h3 class="font-medium text-strong">Batches</h3>
 
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <svg class="h-4 w-4 text-icon-alpha" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <div class="relative w-64 flex items-stretch border hover:border-hovered border-base rounded-md focus-within:ring-3 focus-within:ring-brand-weak">
+          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg class="size-4 text-icon-alpha" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
             </svg>
           </div>
           <input
               v-model="searchQuery"
               type="text"
-              class="block w-64 pl-10 pr-10 py-1.5 text-sm bg-default border border-base text-strong rounded-md placeholder:text-weak focus:outline-none focus:ring-2 focus:ring-brand-weak focus:border-brand"
+              class="block w-full bg-transparent pl-9 pr-3 outline-none py-1.5 text-sm text-strong placeholder:text-weak"
               placeholder="Search batches..."
           />
-          <button
-              v-if="searchQuery"
-              @click="clearSearch"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center"
-          >
-            <svg class="h-4 w-4 text-icon-alpha hover:text-icon-strong" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
-            </svg>
-          </button>
         </div>
       </div>
 
