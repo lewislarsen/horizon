@@ -1,6 +1,22 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/horizon/compare/v5.45.4...5.x)
+## [Unreleased](https://github.com/laravel/horizon/compare/v5.46.0.1...5.x)
+
+## [v5.46.0.1](https://github.com/laravel/horizon/compare/v5.45.4...v5.46.0.1) - 2026-04-23
+
+**Full Changelog**: https://github.com/lewislarsen/horizon/compare/v5.45.4...v5.46.0.1
+
+### v5.46.0.1
+
+Changes:
+
+- Apply our styling to the "Load New Entries" block
+- Apply consistent styling with search inputs throughout design
+- Update failed job details spinner to match spinners across UI
+- [5.x] Add first-class Redis Cluster support by [@timmylindh](https://github.com/timmylindh) in https://github.com/laravel/horizon/pull/1760
+- [5.x] Pass $later in RedisQueue@later() by [@cosmastech](https://github.com/cosmastech) in https://github.com/laravel/horizon/pull/1759
+- Bump axios from 1.8.2 to 1.15.0 by https://github.com/dependabot[bot] in https://github.com/laravel/horizon/pull/1758
+- Add .npmrc file by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/horizon/pull/1753
 
 ## [v5.45.4](https://github.com/laravel/horizon/compare/v5.45.3...v5.45.4) - 2026-03-13
 
