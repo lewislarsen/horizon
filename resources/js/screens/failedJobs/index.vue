@@ -140,10 +140,16 @@ export default {
       </div>
 
       <div class="bg-default shadow-xs-with-border rounded-lg overflow-hidden">
-        <div v-if="hasNewEntries && !this.$root.autoLoadsNewEntries" class="bg-brand-weak border-b border-brand text-center py-2 px-4">
-          <small class="text-default">
-            <a href="#" @click.prevent="loadNewEntries" class="text-link font-medium">Load New Entries</a>
-          </small>
+        <div v-if="hasNewEntries && !this.$root.autoLoadsNewEntries" class="border-b border-default bg-weak/70 px-5 py-3">
+          <div class="flex items-center justify-center">
+            <button
+                type="button"
+                @click.prevent="loadNewEntries"
+                class="cursor-pointer rounded-md border border-base bg-default px-3 py-1.5 text-sm font-medium text-strong shadow-xs transition-colors hover:bg-hovered active:bg-pressed"
+            >
+              Load New Entries
+            </button>
+          </div>
         </div>
 
         <div v-if="!ready" class="flex items-center justify-center p-10">

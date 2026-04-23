@@ -151,18 +151,18 @@ export default {
     </div>
 
     <div v-if="ready && jobs.length > 0" class="bg-default shadow-xs-with-border rounded-lg overflow-hidden">
-      <div v-if="hasNewEntries && !this.$root.autoLoadsNewEntries" class="bg-brand-weak border-b border-brand text-center py-2 px-4">
-        <small class="text-default">
-          <a
-              href="#"
-              @click.prevent="loadNewEntries"
+      <div v-if="hasNewEntries && !this.$root.autoLoadsNewEntries" class="border-b border-default bg-weak/70 px-5 py-3">
+        <div class="flex items-center justify-center">
+          <button
               v-if="!loadingNewEntries"
-              class="text-link hover:text-link-hovered font-medium"
+              type="button"
+              @click.prevent="loadNewEntries"
+              class="cursor-pointer rounded-md border border-base bg-default px-3 py-1.5 text-sm font-medium text-strong shadow-xs transition-colors hover:bg-hovered active:bg-pressed"
           >
             Load New Entries
-          </a>
-          <span v-if="loadingNewEntries" class="text-default">Loading...</span>
-        </small>
+          </button>
+          <span v-if="loadingNewEntries" class="text-sm text-default">Loading...</span>
+        </div>
       </div>
 
       <div class="overflow-x-auto">
