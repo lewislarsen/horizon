@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/horizon/compare/v5.46.0.1...5.x)
+## [Unreleased](https://github.com/laravel/horizon/compare/v5.47.0...5.x)
+
+## [v5.47.0](https://github.com/laravel/horizon/compare/v5.46.0.1...v5.47.0) - 2026-05-23
+
+- Added the new option added [here](github.com/laravel/horizon/commit/be74bc494f7a244d74f1c8ad6552f9b8621f10c6).
 
 ## [v5.46.0.1](https://github.com/laravel/horizon/compare/v5.45.4...v5.46.0.1) - 2026-04-23
 
