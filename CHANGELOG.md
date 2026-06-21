@@ -1,6 +1,18 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/horizon/compare/v5.47.0...5.x)
+## [Unreleased](https://github.com/lewislarsen/horizon/compare/v5.47.0.1...5.x)
+
+## [v5.47.0.1](https://github.com/lewislarsen/horizon/compare/v5.47.0...v5.47.0.1) - 2026-06-21
+
+### v5.47.0.1
+
+Changes:
+
+- Add the `configure-horizon` Boost skill and upstream refinements.
+- Fix null `hmget` responses when building Redis metrics snapshot data.
+- Fix metric clearing when PhpRedis `SCAN_PREFIX` is enabled.
+- Add `Horizon::registerDevCommands()` for Laravel dev command registration.
+- Bump `form-data` from 4.0.5 to 4.0.6.
 
 ## [v5.47.0](https://github.com/laravel/horizon/compare/v5.46.0.1...v5.47.0) - 2026-05-23
 
