@@ -66,6 +66,13 @@ class Horizon
     ];
 
     /**
+     * The CSP nonce to use for style and script tags.
+     *
+     * @var string
+     */
+    public static $nonceAttribute = '';
+
+    /**
      * Determine if the given request can access the Horizon dashboard.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -181,8 +188,10 @@ class Horizon
             throw new RuntimeException('Unable to load the Horizon dashboard Tailwind CSS.');
         }
 
+        $nonceAttribute = static::$nonceAttribute;
+
         return new HtmlString(<<<HTML
-        <style>{$tailwind}</style>
+        <style{$nonceAttribute}>{$tailwind}</style>
         HTML);
     }
 
@@ -199,8 +208,10 @@ class Horizon
 
         $horizon = Js::from(static::scriptVariables());
 
+        $nonceAttribute = static::$nonceAttribute;
+
         return new HtmlString(<<<HTML
-            <script type="module">
+            <script type="module"{$nonceAttribute}>
                 window.Horizon = {$horizon};
                 {$js}
             </script>
@@ -271,6 +282,19 @@ class Horizon
     public static function routeSmsNotificationsTo($number)
     {
         static::$smsNumber = $number;
+
+        return new static;
+    }
+
+    /**
+     * Set the CSP nonce to use for style and script tags.
+     *
+     * @param  string  $nonce
+     * @return static
+     */
+    public static function cspNonce($nonce)
+    {
+        static::$nonceAttribute = " nonce=\"{$nonce}\"";
 
         return new static;
     }
