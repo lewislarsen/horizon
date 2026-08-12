@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/lewislarsen/horizon/compare/v5.48...5.x)
+## [Unreleased](https://github.com/lewislarsen/horizon/compare/v5.48.1...5.x)
+
+## [v5.48.1](https://github.com/lewislarsen/horizon/compare/v5.48...v5.48.1) - 2026-08-12
+
+### v5.48.1
+
+Changes:
+
+- Patch release for the `v5.48` changes after compiling release assets.
 
 ## [v5.48](https://github.com/lewislarsen/horizon/compare/v5.47.0.1...v5.48) - 2026-08-12
 
