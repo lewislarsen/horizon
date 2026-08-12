@@ -1,6 +1,19 @@
 # Release Notes
 
-## [Unreleased](https://github.com/lewislarsen/horizon/compare/v5.47.0.1...5.x)
+## [Unreleased](https://github.com/lewislarsen/horizon/compare/v5.48...5.x)
+
+## [v5.48](https://github.com/lewislarsen/horizon/compare/v5.47.0.1...v5.48) - 2026-08-12
+
+### v5.48
+
+Changes:
+
+- Register Horizon's Laravel dev commands from the service provider.
+- Fix dashboard max runtime and max throughput metrics when multiple queues have snapshots.
+- Exclude Laravel's generic `queue` dev command when registering Horizon dev commands.
+- Fix `RedisQueue::later()` behavior on Laravel 12.10 and ensure the delay is passed to the payload.
+- Fix `horizon:clear-metrics` behavior with PhpRedis 6.1+.
+- Add CSP nonce support for Horizon's inline style and script tags.
 
 ## [v5.47.0.1](https://github.com/lewislarsen/horizon/compare/v5.47.0...v5.47.0.1) - 2026-06-21
 
