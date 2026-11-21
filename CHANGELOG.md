@@ -1,6 +1,19 @@
 # Release Notes
 
-## [Unreleased](https://github.com/lewislarsen/horizon/compare/v5.48...5.x)
+## [Unreleased](https://github.com/lewislarsen/horizon/compare/v5.49...5.x)
+
+## [v5.49](https://github.com/lewislarsen/horizon/compare/v5.48...v5.49) - 2026-11-21
+
+### v5.49
+
+Changes:
+
+- Escape CSP nonce values before rendering Horizon inline style and script tags.
+- Add a `--json` option for worker log output.
+- Add a logarithmic (`log`) auto-scaling strategy for supervisors.
+- Fix file watcher compatibility with Chokidar 5.
+- Improve Redis Cluster CI startup reliability.
+- Correct delayed-job timestamps for `DateInterval` and `CarbonInterval` delays.
 
 ## [v5.48](https://github.com/lewislarsen/horizon/compare/v5.47.0.1...v5.48) - 2026-08-12
 
