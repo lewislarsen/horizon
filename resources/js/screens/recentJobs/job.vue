@@ -14,12 +14,29 @@ export default {
     delayedAt() {
       try {
         const unserialized = phpunserialize(this.job.payload.data.command);
-        if (unserialized && unserialized.delay && unserialized.delay.date) {
-          return moment.tz(unserialized.delay.date, unserialized.delay.timezone).local().format('YYYY-MM-DD HH:mm:ss');
-        } else if (unserialized && unserialized.delay) {
-          return this.formatDate(this.job.payload.pushedAt).add(unserialized.delay, 'seconds').local().format('YYYY-MM-DD HH:mm:ss');
+
+        if (! unserialized || ! unserialized.delay) {
+          return null;
         }
+
+        if (unserialized.delay.date) {
+          return moment.tz(unserialized.delay.date, unserialized.delay.timezone).local().format('YYYY-MM-DD HH:mm:ss');
+        }
+
+        if (typeof unserialized.delay === 'object') {
+          return this.formatDate(this.job.payload.pushedAt).add({
+            years: unserialized.delay.y,
+            months: unserialized.delay.m,
+            days: unserialized.delay.d,
+            hours: unserialized.delay.h,
+            minutes: unserialized.delay.i,
+            seconds: unserialized.delay.s,
+          }).local().format('YYYY-MM-DD HH:mm:ss');
+        }
+
+        return this.formatDate(this.job.payload.pushedAt).add(unserialized.delay, 'seconds').local().format('YYYY-MM-DD HH:mm:ss');
       } catch (e) {}
+
       return null;
     },
   },
